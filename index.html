@@ -1,27 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    /* styles.css */
-body {
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
-}
-
-h1 {
-    color: blue;
-    text-align: center;
-}
-
-p {
-    font-size: 18px;
-    color: #333;
-}
-
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGS Roofing LLC</title>
     <style>
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -104,33 +88,127 @@ p {
             <li>Roof Inspections</li>
         </ul>
     </section>
-    
+
     <section id="Our Finished Roofs">
-    <!-- Add the photo gallery here -->
-    <div class="gallery-container">
-        <h1>Customer Photo Gallery</h1>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="Roof 2024 7.jpg" alt="Roofing Project 1">
-            </div>
-            <div class="gallery-item">
-                <img src="Roof 2024 1.jpg" alt="Roofing Project 2">
-            </div>
-            <div class="gallery-item">
-                <img src="Roof 2024 2.jpg" alt="Roofing Project 3">
-            </div>
-            <div class="gallery-item">
-                <img src="Roof 2024 6.jpg" alt="Roofing Project 4">
-            </div>
-            <div class="gallery-item">
-                <img src="Roof 2024 10.jpg" alt="Roofing Project 5">
-            </div>
-            <div class="gallery-item">
-                <img src="Roof 2024 5.jpg" alt="Roofing Project 6">
-            </div>
-        </div>
+    <h1>Photo Gallery</h1>
+
+    <!-- Gallery Container -->
+    <div id="gallery" class="gallery-container"></div>
+
+    <!-- Pagination Buttons -->
+    <div class="pagination">
+        <button id="prevBtn" onclick="prevPage()">Previous</button>
+        <button id="nextBtn" onclick="nextPage()">Next</button>
     </div>
+
+    <!-- Modal for enlarged images -->
+    <div id="modal" class="modal">
+        <span id="closeModal" class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
+    </div>
+
+    <script src="gallery.js"></script>
         </section>
+
+
+    /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.gallery-container img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ccc;
+}
+
+
+    // gallery.js
+
+// Array of image URLs (You can replace these with your own image URLs)
+const images = [
+    'Roofing Project 1', 'Roofing Project 2', 'Roofing Project 3', 'Roofing Project 4', 
+    'Roofing Project 5', 'Roofing Project 6', 'image7.jpg', 'image8.jpg', 
+    'image9.jpg', 'image10.jpg', 'image11.jpg', 'image12.jpg',
+    'image13.jpg', 'image14.jpg', 'image15.jpg'
+];
+
+const imagesPerPage = 6; // Number of images per page
+let currentPage = 1; // Current page number
+const totalPages = Math.ceil(images.length / imagesPerPage); // Total pages
+
+// Function to render the images on the current page
+function renderGallery() {
+    const gallery = document.getElementById('gallery');
+    gallery.innerHTML = ''; // Clear the current gallery
+
+    // Calculate the index range of images to show on this page
+    const startIndex = (currentPage - 1) * imagesPerPage;
+    const endIndex = startIndex + imagesPerPage;
+
+    // Loop over the images for the current page
+    const imagesToShow = images.slice(startIndex, endIndex);
+    imagesToShow.forEach(imageSrc => {
+        const img = document.createElement('img');
+        img.src = imageSrc;
+        gallery.appendChild(img);
+    });
+
+    // Disable/enable buttons depending on the page
+    document.getElementById('prevBtn').disabled = currentPage === 1;
+    document.getElementById('nextBtn').disabled = currentPage === totalPages;
+}
+
+// Function to go to the previous page
+function prevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        renderGallery();
+    }
+}
+
+// Function to go to the next page
+function nextPage() {
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderGallery();
+    }
+}
+
+// Initial render when the page loads
+window.onload = function() {
+    renderGallery();
+};
     
     <section id="reviews">
         <h2>Customer Reviews</h2>
