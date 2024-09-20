@@ -88,127 +88,6 @@
             <li>Roof Inspections</li>
         </ul>
     </section>
-
-    <section id="Our Finished Roofs">
-    <h1>Photo Gallery</h1>
-
-    <!-- Gallery Container -->
-    <div id="gallery" class="gallery-container"></div>
-
-    <!-- Pagination Buttons -->
-    <div class="pagination">
-        <button id="prevBtn" onclick="prevPage()">Previous</button>
-        <button id="nextBtn" onclick="nextPage()">Next</button>
-    </div>
-
-    <!-- Modal for enlarged images -->
-    <div id="modal" class="modal">
-        <span id="closeModal" class="close">&times;</span>
-        <img class="modal-content" id="modalImage">
-        <div id="caption"></div>
-    </div>
-
-    <script src="gallery.js"></script>
-        </section>
-
-
-    /* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
-
-.gallery-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.gallery-container img {
-    width: 200px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.pagination {
-    margin-top: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:disabled {
-    background-color: #ccc;
-}
-
-
-    // gallery.js
-
-// Array of image URLs (You can replace these with your own image URLs)
-const images = [
-    'Roofing Project 1', 'Roofing Project 2', 'Roofing Project 3', 'Roofing Project 4', 
-    'Roofing Project 5', 'Roofing Project 6', 'image7.jpg', 'image8.jpg', 
-    'image9.jpg', 'image10.jpg', 'image11.jpg', 'image12.jpg',
-    'image13.jpg', 'image14.jpg', 'image15.jpg'
-];
-
-const imagesPerPage = 6; // Number of images per page
-let currentPage = 1; // Current page number
-const totalPages = Math.ceil(images.length / imagesPerPage); // Total pages
-
-// Function to render the images on the current page
-function renderGallery() {
-    const gallery = document.getElementById('gallery');
-    gallery.innerHTML = ''; // Clear the current gallery
-
-    // Calculate the index range of images to show on this page
-    const startIndex = (currentPage - 1) * imagesPerPage;
-    const endIndex = startIndex + imagesPerPage;
-
-    // Loop over the images for the current page
-    const imagesToShow = images.slice(startIndex, endIndex);
-    imagesToShow.forEach(imageSrc => {
-        const img = document.createElement('img');
-        img.src = imageSrc;
-        gallery.appendChild(img);
-    });
-
-    // Disable/enable buttons depending on the page
-    document.getElementById('prevBtn').disabled = currentPage === 1;
-    document.getElementById('nextBtn').disabled = currentPage === totalPages;
-}
-
-// Function to go to the previous page
-function prevPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        renderGallery();
-    }
-}
-
-// Function to go to the next page
-function nextPage() {
-    if (currentPage < totalPages) {
-        currentPage++;
-        renderGallery();
-    }
-}
-
-// Initial render when the page loads
-window.onload = function() {
-    renderGallery();
-};
     
     <section id="reviews">
         <h2>Customer Reviews</h2>
@@ -264,5 +143,88 @@ window.onload = function() {
         <p>&copy; 2024 SGS Roofing LLC. All rights reserved.</p>
     </footer>
 </body>
+
+
+   
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .gallery-item {
+            width: 32%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* Responsive layout for smaller screens */
+        @media (max-width: 768px) {
+            .gallery-item {
+                width: 48%;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gallery-container">
+        <h1>Customer Roofing Projects</h1>
+        <div class="gallery-grid">
+            <!-- Add your images here -->
+            <div class="gallery-item">
+                <img src="images/Roofing Project 1.jpg" alt="Roofing Project 1">
+            </div>
+            <div class="gallery-item">
+                <img src="images/Roofing Project 2.jpg" alt="Roofing Project 2">
+            </div>
+            <div class="gallery-item">
+                <img src="images/Roofing Project 3.jpg" alt="Roofing Project 3">
+            </div>
+            <div class="gallery-item">
+                <img src="images/Roofing Project 4.jpg" alt="Roofing Project 4">
+            </div>
+            <div class="gallery-item">
+                <img src="images/Roofing Project 5.jpg" alt="Roofing Project 5">
+            </div>
+            <div class="gallery-item">
+                <img src="images/Roofing Project 6.jpg" alt="Roofing Project 6">
+            </div>
+        </div>
+    </div>
+</body>
+
 
 </html>
