@@ -142,7 +142,7 @@
         
 .contact-section {
   background-color: #f0f0f0; /* Grey background */
-  padding: 50px;
+  padding: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,6 +155,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   width: 100%;
+  text-align: center; /* Center content inside container */
 }
 
 h2 {
@@ -163,14 +164,22 @@ h2 {
   font-family: Arial, sans-serif;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center form inputs */
+}
+
 .form-group {
+  width: 100%;
   margin-bottom: 15px;
 }
 
 label {
   display: block;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   font-size: 16px;
+  text-align: left; /* Keep label aligned to the left */
 }
 
 input, textarea {
@@ -179,6 +188,7 @@ input, textarea {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 input:focus, textarea:focus {
